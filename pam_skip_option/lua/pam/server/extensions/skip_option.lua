@@ -6,6 +6,8 @@ local setting_namespace = PAM.setting_namespace:AddChild(name)
 local reset_percentage = setting_namespace:AddSetting("round_reset_percentage", pacoman.TYPE_PERCENTAGE, 1)
 
 function PAM_EXTENSION:RegisterSpecialOptions()
+	if PAM.vote_type ~= "map" then return end
+
 	PAM.RegisterOption("skip", function()
 		PAM.Cancel()
 		local round_limit = PAM.setting_namespace:GetChild("custom_round_counter"):GetSetting("round_limit")
