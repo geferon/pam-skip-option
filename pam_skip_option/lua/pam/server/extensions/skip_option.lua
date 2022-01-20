@@ -8,7 +8,7 @@ local reset_percentage = setting_namespace:AddSetting("round_reset_percentage", 
 function PAM_EXTENSION:RegisterSpecialOptions()
 	if PAM.vote_type ~= "map" then return end
 
-	PAM.RegisterOption("skip", function()
+	PAM.RegisterOption("keep_playing", function()
 		PAM.Cancel()
 		local round_limit = PAM.setting_namespace:GetChild("custom_round_counter"):GetSetting("round_limit")
 		PAM.custom_round_counter = round_limit:GetActiveValue() * (1 - reset_percentage:GetActiveValue())

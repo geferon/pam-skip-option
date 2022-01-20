@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
- "$basetexture" "vgui/pam/special_options/skip"
+ "$basetexture" "vgui/pam/special_options/keep_playing"
  "$vertexcolor" 1
  "$vertexalpha" 1
  "$translucent" 1
