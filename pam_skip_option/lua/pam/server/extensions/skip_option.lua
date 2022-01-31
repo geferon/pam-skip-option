@@ -3,7 +3,7 @@ PAM_EXTENSION.name = name
 PAM_EXTENSION.enabled = true
 
 local setting_namespace = PAM.setting_namespace:AddChild(name)
-local reset_percentage = setting_namespace:AddSetting("round_reset_percentage", pacoman.TYPE_PERCENTAGE, 1)
+local reset_percentage = setting_namespace:AddSetting("round_reset_percentage", pacoman.TYPE_PERCENTAGE, 1, "Determines which percentage of the round limit will need to be replayed before a vote starts again.")
 local round_limit
 
 function PAM_EXTENSION:Initialize()
