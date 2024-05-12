@@ -13,9 +13,14 @@ end
 function PAM_EXTENSION:RegisterSpecialOptions()
 	if PAM.vote_type ~= "map" then return end
 
+	local extensionSupported = PAM.extension_handler.RunReturningEvent("HasRoundLimitExtensionSupport")
+	if !extensionSupported then return end
+
 	PAM.RegisterOption("keep_playing", function()
 		PAM.Cancel()
-		local new_round_count = round_limit:GetActiveValue() * (1 - reset_percentage:GetActiveValue())
+		local percentage = reset_percentage:GetActiveValue()
+		local new_round_count = round_limit:GetActiveValue() * (1 - percentage)
 		PAM.extension_handler.RunEvent("SetRoundCounter", new_round_count)
+		PAM.extension_handler.RunEvent("RoundLimitExtended", new_round_count, percentage)
 	end)
 end
