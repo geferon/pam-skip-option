@@ -15,6 +15,10 @@ function PAM_EXTENSION:RegisterSpecialOptions()
 
 	local extensionSupported = PAM.extension_handler.RunReturningEvent("HasRoundLimitExtensionSupport")
 	if !extensionSupported then return end
+	
+	-- Using the convar gamemode to get the active gamemode as the gamemode extension will change the gamemode convar
+	local current_gamemode = gamemode_name or GetConVar("gamemode"):GetString() or engine.ActiveGamemode()
+	if current_gamemode != engine.ActiveGamemode() then return end -- We only add this option if the current vote is for the same gamemode
 
 	PAM.RegisterOption("keep_playing", function()
 		PAM.Cancel()
